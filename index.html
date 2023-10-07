@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Pacman and Ball Animations</title>
+    <style>
+        *,
+        *:after,
+        *:before {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            color: #fff;
+            padding: 0;
+            margin: 0;
+            font-family: 'Slabo 27px', serif;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styling for the Pacman animation container */
+        .pacman-container {
+            border: 5px solid #000000;
+            width: 300px;
+            height: 300px;
+            background: #ffffff;
+            position: absolute;
+            top: 1500px;
+            /* Move to the top */
+            left: 40px;
+            /* Move to the left */
+        }
+
+        .pacman-container .pacman {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #f24848;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pacman-container .eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            top: 20px;
+            right: 50px;
+            background: #f7ff0a;
+        }
+
+        .pacman-container .mouth {
+            background: #ffffff;
+            position: absolute;
+            width: 110px;
+            height: 100px;
+            clip-path: polygon(100% 74%, 44% 48%, 100% 25%);
+            /* Adjust the clip-path */
+            animation: eat 0.7s infinite;
+
+        }
+
+        .pacman-container .food {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #000000;
+            border-radius: 50%;
+            top: 40%;
+            left: 120px;
+            animation: food 0.5s infinite;
+            /* Faster animation duration */
+        }
+
+        @keyframes eat {
+
+            0%,
+            100% {
+                clip-path: polygon(100% 74%, 44% 48%, 100% 25%);
+                /* Adjust the clip-path */
+            }
+
+            25% {
+                clip-path: polygon(100% 60%, 44% 48%, 100% 40%);
+            }
+
+            50% {
+                clip-path: polygon(100% 50%, 44% 48%, 100% 50%);
+            }
+
+            75% {
+                clip-path: polygon(100% 59%, 44% 48%, 100% 35%);
+            }
+        }
+
+        @keyframes food {
+            0% {
+                transform: translateX(0);
+
+            }
+
+            25% {
+
+                opacity: 1;
+
+            }
+
+            50% {
+
+                opacity: 1;
+
+            }
+
+            75% {
+
+                opacity: 1;
+
+            }
+
+            100% {
+                transform: translateX(-40px);
+                opacity: 0;
+
+            }
+        }
+
+        .ball_container {
+
+            display: flex;
+            justify-content: flex-end;
+            /* Move the ball animation to the bottom */
+            align-items: flex-end;
+            /* Move the ball animation to the bottom */
+            position: absolute;
+            border: 5px solid #000000;
+            width: 300px;
+            height: 400px;
+            top: 1500px;
+            left: 450px;
+        }
+
+        .center {
+            position: absolute;
+            bottom: 100px;
+            /* Move the ball animation to the bottom */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ball {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #648ff3;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: animate 1.5s linear infinite;
+            overflow: hidden;
+
+        }
+
+
+
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -50%) translateY(-200px) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(0px) rotate(180deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) translateY(-200px) rotate(360deg);
+            }
+        }
+
+        .shadow {
+            position: absolute;
+            width: 150px;
+            height: 50px;
+            transform: translate(-50%, 100%);
+            background: rgba(0, 0, 0, .2);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(2px);
+            animation: shadow 1.5s linear infinite;
+
+        }
+
+        @keyframes shadow {
+            0% {
+                transform: translate(-50%, 100%)scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, 100%)scale(.5);
+            }
+
+            100% {
+                transform: translate(-50%, 100%)scale(1);
+            }
+        }
+
+        .bat{
+            height: 450px;
+            width: 450px;
+        }
+
+        .field_container:hover .bat {
+            height: 450px;
+            width: 450px;
+            transform: rotate(-60deg);
+            transform-origin: top right;
+            right: 300px;
+            transition: transform 0.2s ease-in;
+        }
+
+        .field_container {
+            display: flex;
+            justify-content: center;
+            /* Move the ball animation to the bottom */
+            align-items: center;
+            /* Move the ball animation to the bottom */
+            position: absolute;
+            border: 5px solid #000000;
+            width: 900px;
+            height: 800px;
+            top: 600px;
+            left: 40px;
+            /* Move to the top */
+
+        }
+
+        .c_ball {
+            width: 90px;
+            position: relative;
+            left: 140px;
+            transition: transform 1s ease-out 0.2s;
+        }
+
+        .field_container:hover .c_ball {
+            transform: translate(600px, -210px);
+        }
+
+        
+
+        .sunset_container {
+            border: 5px solid #000000;
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            width: 1400px;
+            height: 500px;
+            background-color: #ffd700;
+            /* Initial background color */
+            animation: sky 5.5s 0.5s forwards;
+            line-height: 0;
+        }
+
+        @keyframes sky {
+            10% {
+                background-color: #ffd700;
+            }
+
+            20% {
+                background-color: #ffb90f;
+            }
+
+            35% {
+                background-color: #b39800;
+            }
+            60% {
+                background-color: #68228b;
+            }
+
+            90% {
+                background-color: #68228b;
+            }
+            100% {
+                background-color: #68228b;
+            }
+        }
+
+
+        .sun {
+            height: 100px;
+            width: 100px;
+            background-color: #ff8c1a;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            box-shadow: 0px 0px 20px 5px #ff8c1a;
+            animation: sunset 12s forwards;
+        }
+
+        .moon {
+            background-color: #68228b;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: -20px 10px white;
+            position: absolute;
+            left: 10%;
+            top: 30%;
+            opacity: 0;
+            animation: night 0.8s 3s forwards;
+        }
+
+        .building {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+
+        @keyframes sunset {
+            50% {
+                transform: translateY(450px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(750px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes night {
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        .cube-container {
+    border: 5px solid #000000;
+    perspective: 800px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Add this line to vertically center the cube */
+    top: 1300px;
+    left: 350px;
+    position: relative;
+}
+
+/* Define the cube */
+.cube {
+    width: 200px; /* Reduce the width to center the cube */
+    height: 200px; /* Reduce the height to center the cube */
+    transform-style: preserve-3d;
+    animation: spin 6s linear infinite;
+    display: flex; /* Add this line */
+    justify-content: center; /* Add this line to horizontally center the cube */
+    align-items: center; /* Add this line to vertically center the cube */
+}
+
+/* Define the cube faces */
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(52, 152, 219, 0.7);
+    border: 2px solid #3498db;
+}
+
+/* ... Rest of your CSS remains the same */
+
+
+        .front  { transform: translateZ(100px); }
+        .back   { transform: translateZ(-100px) rotateY(180deg); }
+        .right  { transform: rotateY(90deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .top    { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        /* Color animation */
+        @keyframes colorChange {
+            0% { background-color: rgba(52, 152, 219, 0.7); }
+            25% { background-color: rgba(231, 76, 60, 0.7); }
+            50% { background-color: rgba(46, 204, 113, 0.7); }
+            75% { background-color: rgba(241, 196, 15, 0.7); }
+            100% { background-color: rgba(155, 89, 182, 0.7); }
+        }
+
+        /* Rotate animation */
+        @keyframes spin {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        /* Apply the color change animation to cube faces */
+        .cube:hover .face {
+            animation: colorChange 5s infinite alternate;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pacman-container">
+        <div class="pacman">
+            <div class="eye"></div>
+            <div class="mouth"></div>
+            <div class="food"></div>
+        </div>
+    </div>
+    <div class="ball_container">
+        <div class="center">
+            <div class="ball"></div>
+            <div class="shadow"></div>
+
+        </div>
+    </div>
+    <div class="field_container">
+        <img class="bat" src="images/bat.png" alt="">
+        <img src="images/ball.png" alt="" class="c_ball">
+    </div>
+
+    <div class="sunset_container">
+        <div class="sun"></div>
+        <div class="building"><img src="images/bg.png"></div>
+        <div class="moon"></div>
+    </div>
+
+    <div class="cube-container">
+        <div class="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+    </div>
+</body>
+
+</html>
