@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +7,7 @@
     <title>Animations</title>
 
     <style>
+        /* Your CSS code as provided */
         *,
         *:after,
         *:before {
@@ -435,11 +435,22 @@
     }
 }
 
+        /* Additional CSS for JavaScript-controlled animations */
+        .move-ball {
+            animation: moveBall 2s forwards;
+        }
+
+        @keyframes moveBall {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(200px);
+            }
+        }
     </style>
 </head>
-
 <body>
-
     <div class="heading">
         <h1>Wasif Mehmood's Animations</h1>
     </div>
@@ -455,7 +466,6 @@
         <div class="center">
             <div class="ball"></div>
             <div class="shadow"></div>
-
         </div>
     </div>
     <div class="field_container">
@@ -479,6 +489,25 @@
             <div class="face bottom"></div>
         </div>
     </div>
-</body>
 
+    <!-- Add a button to trigger the ball animation -->
+    <button id="moveBallButton">Move Ball</button>
+
+    <script>
+        // JavaScript code to control animations
+
+        // Get the ball element
+        const ball = document.querySelector('.ball');
+
+        // Get the move ball button
+        const moveBallButton = document.getElementById('moveBallButton');
+
+        // Add an event listener to the button to trigger the ball animation
+        moveBallButton.addEventListener('click', function () {
+            ball.classList.add('move-ball');
+        });
+
+        // You can add similar JavaScript code to control other animations or add more interactivity.
+    </script>
+</body>
 </html>
